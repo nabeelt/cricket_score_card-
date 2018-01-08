@@ -1,5 +1,11 @@
+@font-face {
+  font-family: 'atomic';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./styles/fonts/atomic-age/atomicage-regular.ttf');
+}
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'atomic';
 }
