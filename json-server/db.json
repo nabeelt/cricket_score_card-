@@ -1,0 +1,12 @@
+{
+    "users": [
+        { 
+            "id": 1,
+            "_token": 7896544,
+            "name":"nabeel",
+            "username":"nabeel92",
+            "password":"password",
+            "email":"nabeel@qburst.com" 
+        }
+    ]
+}
