@@ -16,11 +16,7 @@ class Template extends Component {
               <span>SIGN UP</span>
           </button>
         </header>
-       
-         <div>{
-          this.props.children?this.props.children:<h1>NO Layout specified</h1>
-         
-         }</div>
+         <div>{this.props.children?this.props.children:<h1>NO Layout specified</h1>}</div>
         <footer className="App-footer">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Crick live</h1>
