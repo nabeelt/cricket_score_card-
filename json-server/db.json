@@ -1,12 +1,273 @@
 {
-    "users": [
-        { 
+    "match":[
+        {
+            "id":1,
+            "match_name": "IND/AUS",
+            "stadium" : "STADIUM",
+            "date":"123123132123"
+        },
+        {
+            "id":2,
+            "match_name": "IND/PAK",
+            "stadium" : "STADIUM",
+            "date":"123123132123"
+        },
+        {
+            "id":3,
+            "match_name": "IND/SA",
+            "stadium" : "STADIUM",
+            "date":"123123132123"
+        }
+    ],
+    "teams" : [
+        {
             "id": 1,
-            "_token": 7896544,
-            "name":"nabeel",
-            "username":"nabeel92",
-            "password":"password",
-            "email":"nabeel@qburst.com" 
+            "match_id": 1,
+            "team_name":"IND"
+        },
+        {
+            "id": 2,
+            "match_id":1,
+            "team_name":"AUS"
+        },
+        {
+            "id":1,
+            "match_id": 2,
+            "team_name":"IND"
+        },
+        {
+            "id": 2,
+            "match_id":2,
+            "team_name":"PAK"
+        },
+        {
+            "id": 1,
+            "match_id":3,
+            "team_name":"IND"
+        },
+        {
+            "id":2,
+            "match_id":3,
+            "team_name":"SA"
+        }
+
+    ],
+    "players": [
+        {
+            "id": 1,
+            "player_name": "Praveen",
+            "six": 12,
+            "five": 10,
+            "four": 8,
+            "three": 8,
+            "one": 8,
+            "dots": 8,
+            "team_id":1,
+            "match_id":1
+        }, 
+        {
+            "id": 2,
+            "player_name": "Praveen",
+            "six": 12,
+            "five": 10,
+            "four": 8,
+            "three": 8,
+            "one": 8,
+            "dots": 8,
+            "team_id":1,
+            "match_id":1
+        },
+        {
+            "id": 3,
+            "player_name": "Praveen",
+            "six":[],
+            "five": 10,
+            "four": 8,
+            "three": 8,
+            "one": 8,
+            "dots": 8,
+            "team_id":1,
+            "match_id":1
+        },
+        {
+            "id":4,
+            "player_name": "asdsd",
+            "six": 12,
+            "five": 10,
+            "four": 8,
+            "three": 8,
+            "one": 8,
+            "dots": 8,
+            "team_id":2,
+            "match_id":1
+        },
+        {
+            "id": 5,
+            "player_name": "Praasdasdasdveen",
+            "six": 12,
+            "five": 10,
+            "four": 8,
+            "three": 8,
+            "one": 8,
+            "dots": 8,
+            "team_id":2,
+            "match_id":1
+        },
+        {
+            "id": 6,
+            "player_name": "Pravasdaseen",
+            "six": 12,
+            "five": 10,
+            "four": 8,
+            "three": 8,
+            "one": 8,
+            "dots": 8,
+            "team_id":2,
+            "match_id":1
+        },
+        {
+            "id": 7,
+            "player_name": "Praveen  asdsad",
+            "six": 12,
+            "five": 10,
+            "four": 8,
+            "three": 8,
+            "one": 8,
+            "dots": 8,
+            "team_id":1,
+            "match_id":2
+        },
+        {
+            "id": 8,
+            "player_name": "Prasdasdaveen",
+            "six": 12,
+            "five": 10,
+            "four": 8,
+            "three": 8,
+            "one": 8,
+            "dots": 8,
+            "team_id":1,
+            "match_id":2
+        },
+        {
+            "id": 9,
+            "player_name": "Praasdsadveen",
+            "six": 12,
+            "five": 10,
+            "four": 8,
+            "three": 8,
+            "one": 8,
+            "dots": 8,
+            "team_id":1,
+            "match_id":2
+        },
+        {
+            "id": 10,
+            "player_name": "Praveen",
+            "six": 12,
+            "five": 10,
+            "four": 8,
+            "three": 8,
+            "one": 8,
+            "dots": 8,
+            "team_id":2,
+            "match_id":2
+        },
+        {
+            "id": 11,
+            "player_name": "Praveen",
+            "six": 12,
+            "five": 10,
+            "four": 8,
+            "three": 8,
+            "one": 8,
+            "dots": 8,
+            "team_id":2,
+            "match_id":2
+        },
+        {
+            "id": 12,
+            "player_name": "Praveen",
+            "six": 12,
+            "five": 10,
+            "four": 8,
+            "three": 8,
+            "one": 8,
+            "dots": 8,
+            "team_id":2,
+            "match_id":2
+        },
+        {
+            "id": 13,
+            "player_name": "Praveen",
+            "six": 12,
+            "five": 10,
+            "four": 8,
+            "three": 8,
+            "one": 8,
+            "dots": 8,
+            "team_id":1,
+            "match_id":3
+        },
+        {
+            "id": 14,
+            "player_name": "Praveen",
+            "six": 12,
+            "five": 10,
+            "four": 8,
+            "three": 8,
+            "one": 8,
+            "dots": 8,
+            "team_id":1,
+            "match_id":3
+        },
+        {
+            "id": 15,
+            "player_name": "Praveen",
+            "six": 12,
+            "five": 10,
+            "four": 8,
+            "three": 8,
+            "one": 8,
+            "dots": 8,
+            "team_id":1,
+            "match_id":3
+        },
+        {
+            "id": 16,
+            "player_name": "Praveen",
+            "six": 12,
+            "five": 10,
+            "four": 8,
+            "three": 8,
+            "one": 8,
+            "dots": 8,
+            "team_id":2,
+            "match_id":3
+        },
+        {
+            "id": 17,
+            "player_name": "Praveen",
+            "six": 12,
+            "five": 10,
+            "four": 8,
+            "three": 8,
+            "one": 8,
+            "dots": 8,
+            "team_id":2,
+            "match_id":3
+        },
+        {
+            "id": 18,
+            "player_name": "Praveen",
+            "six": 12,
+            "five": 10,
+            "four": 8,
+            "three": 8,
+            "one": 8,
+            "dots": 8,
+            "team_id":2,
+            "match_id":3
         }
     ]
 }

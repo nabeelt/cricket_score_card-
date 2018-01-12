@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 
-const hostUrl = "http://localhost:3001/";
+const hostUrl = "http://localhost:8080/";
 
 const CONFIG = {
-    getUsers: hostUrl+ "users",
-    getLogin: hostUrl+"adminUser"
+    getAllDetails: hostUrl+ "match",
+    getTeams: hostUrl+ "teams",
+    getPlayers: hostUrl+ "players",
 }
 
 export default CONFIG;
