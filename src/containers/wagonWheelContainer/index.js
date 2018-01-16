@@ -3,6 +3,7 @@ import Template from '../../Template';
 import WagonWheelComponent from '../../components/wagonwheelComponent'
 import CONFIG from '../../config/config'
 import axios from 'axios'
+import './style.css'
 
 class WagonContainer extends Component {
     constructor() {

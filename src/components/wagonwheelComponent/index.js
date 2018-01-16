@@ -49,18 +49,24 @@ class WagonWheelComponent extends Component {
                 {
                 (this.props.data && this.props.data)?
                 <div className="wagon-header-wrapper">
-                    <select className="select match-name" onChange={this.selectMatch}>
-                    <option selected="selected" >Select a match </option>
-                    {this.props.data.map(function(obj,index){ return(<option key={obj.id} value={obj.id}>{obj.match_name}</option>) })}
-                    </select>
-                    <select className="select teams" disabled={this.state.disabled} onChange={this.selectTeam}>
-                        <option selected="selected" >Select a team </option>
-                        {this.state.teamList.map(function(obj,index){ return(<option key={obj.id} value={obj.id}>{obj.team_name}</option>) })}
-                    </select>
-                    <select className="select player-list" disabled={this.state.disabled}>
-                        <option selected="selected" >Select a player </option>  
-                        {this.state.playerList.map(function(obj,index){ return(<option key={obj.id} value={obj.id}>{obj.player_name}</option>) })}
-                    </select>
+                    <div className="select-wrap">
+                        <select className="select match-name" onChange={this.selectMatch}>
+                            <option selected="selected" >Select a match </option>
+                            {this.props.data.map(function(obj,index){ return(<option key={obj.id} value={obj.id}>{obj.match_name}</option>) })}
+                        </select>
+                    </div>
+                    <div className="select-wrap">
+                        <select className="select teams" disabled={this.state.disabled} onChange={this.selectTeam}>
+                            <option selected="selected" >Select a team </option>
+                            {this.state.teamList.map(function(obj,index){ return(<option key={obj.id} value={obj.id}>{obj.team_name}</option>) })}
+                        </select>
+                    </div>
+                    <div className="select-wrap">
+                        <select className="select player-list" disabled={this.state.disabled}>
+                            <option selected="selected" >Select a player </option>  
+                            {this.state.playerList.map(function(obj,index){ return(<option key={obj.id} value={obj.id}>{obj.player_name}</option>) })}
+                        </select>
+                    </div>
                 </div>
                     :
                 <div className="wagon-header-wrapper">NO DATA </div>
