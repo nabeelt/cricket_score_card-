@@ -21,3 +21,6 @@ body,html,#root,main {
   height: 100%;
   width: 100%;
 }
+body {
+    background-color: #f1f1f1;
+}
