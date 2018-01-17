@@ -5,11 +5,13 @@ import CONFIG from '../../config/config'
 import axios from 'axios'
 import './style.css'
 
+
 class WagonContainer extends Component {
     constructor() {
         super();
         this.state = {
-            data: { }
+            data: { },
+            headerData:{}
         }
     }
     componentWillMount () {
@@ -23,6 +25,13 @@ class WagonContainer extends Component {
             console.log(error);
         });
     }
+
+    // this will update the common header data. OPTIONAL
+    onUpdateHeaderData=(data)=>{
+        this.setState({
+            headerData:data
+        })
+    }
     
     render(){
         return (
@@ -30,7 +39,8 @@ class WagonContainer extends Component {
                 {
                     (this.state.data && this.state.data.length)?
                     <div>
-                    <Template>  <WagonWheelComponent data={this.state.data} />
+                    <Template headerData={this.state.headerData}>  
+                    <WagonWheelComponent onUpdateHeaderData={this.onUpdateHeaderData} data={this.state.data} />
                     </Template>  </div>
                     :
                     <div>Loading</div>

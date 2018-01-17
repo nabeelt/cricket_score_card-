@@ -1,7 +1,6 @@
 .canvas {
     background: #c1c1c1;
-    border-radius: 15px;
-    border: 6px solid #4c1717;
+    box-shadow: 0 0 8px #b7b7b7;
     margin-top: 40px; 
     cursor: pointer;
     margin-bottom: 50px;

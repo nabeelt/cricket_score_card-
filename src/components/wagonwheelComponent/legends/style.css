@@ -1,0 +1,38 @@
+.legendWrapper {
+    display: block;
+    padding-bottom: 40px;
+    background: #e6e6e6;
+}
+.each-legend {
+    display: inline-block;
+    width: 6%;
+    position: relative;
+}
+.each-legend:before {
+    content: "";
+    width: 15px;
+    height: 15px;
+    background: #ccc;
+    position: absolute;
+    top: 5px;
+    left: 8px;
+    border: 1px solid;
+}
+.each-legend.six:before {
+    background: red;
+}
+.each-legend.four:before {
+    background: blue;
+}
+.each-legend.three:before {
+    background:yellow;
+}
+.each-legend.two:before {
+    background: violet;
+}
+.each-legend.one:before {
+    background: white;
+}
+.each-legend.dots:before {
+    background: #666;
+}

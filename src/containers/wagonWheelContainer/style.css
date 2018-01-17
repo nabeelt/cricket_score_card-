@@ -9,6 +9,7 @@
     font-family: inherit;
     color: #5e5e5e;
     outline: none;
+    background: transparent;
     position: relative;
 }
 .select-wrap {
@@ -27,4 +28,8 @@
     font-size: 12px;
     height: 10px;
     color: #5e5e5e;
+}
+
+.canvas-wrapper {
+    background: #e6e6e6;
 }

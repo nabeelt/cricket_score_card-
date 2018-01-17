@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import './style.css' 
 import ChartPane from './chartPane' 
+import ScoreCard from './scorecard' 
+import Legends from './legends' 
 import CONFIG from '../../config/config' 
 import axios from 'axios' 
+
+
+const mainWrapper = {
+    position: 'relative'
+}
+
 
 class WagonWheelComponent extends Component {
     constructor (props){
@@ -14,7 +22,8 @@ class WagonWheelComponent extends Component {
             teamList: [],
             playerList: [],
             player: {},
-            selectedPlayers:[]
+            selectedPlayers:[],
+            team_name: ''
         }
         this.selectMatch = this.selectMatch.bind(this);
         this.selectTeam = this.selectTeam.bind(this);
@@ -39,6 +48,8 @@ class WagonWheelComponent extends Component {
     selectTeam (e) {
         const team_id =  parseInt(e.target.selectedOptions[0].value);
         const playerUrl = CONFIG.getPlayers+"?team_id="+team_id+"&match_id="+this.state.match_id;
+        const teamName = e.target.selectedOptions[0].text;
+        this.setState({team_name: teamName});
         axios.get(playerUrl)
         .then((response)=> {
             this.setState({playerList :response.data})
@@ -52,10 +63,29 @@ class WagonWheelComponent extends Component {
     selectMatch (e){
         const match_id = parseInt(e.target.selectedOptions[0].value);
         const teamUrl = CONFIG.getTeams+"?match_id="+match_id;
+        const matchUrl = CONFIG.getAllDetails+"?id="+match_id;
         axios.get(teamUrl)
         .then((response)=> {
             this.setState({teamList :response.data})
-            this.setState({match_id : match_id})
+            this.setState({match_id : match_id});
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+        //populate match details
+
+        axios.get(matchUrl)
+        .then((response)=> {
+            if(this.props.onUpdateHeaderData)
+            {   
+                let data =  response.data[0];
+                this.props.onUpdateHeaderData({
+                    title: data.match_name,
+                    date: data.date,
+                    stadium: data.stadium
+                })
+            }
         })
         .catch(function (error) {
             console.log(error);
@@ -64,7 +94,7 @@ class WagonWheelComponent extends Component {
     }
     render(){
         return(
-            <div>
+            <div style={mainWrapper}>
                 {
                 (this.props.data && this.props.data)?
                 <div className="wagon-header-wrapper">
@@ -90,8 +120,10 @@ class WagonWheelComponent extends Component {
                     :
                 <div className="wagon-header-wrapper">NO DATA </div>
                 }
-                
+                <ScoreCard teamName={this.state.team_name} scoreCardData = {this.state.selectedPlayers}/>
                 <ChartPane selectedPlayers={this.state.selectedPlayers} />
+
+                <Legends />
             </div>
         )
     }
