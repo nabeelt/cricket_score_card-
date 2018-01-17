@@ -12,10 +12,28 @@ class WagonWheelComponent extends Component {
             disabled: true,
             match_id: null,
             teamList: [],
-            playerList: []
+            playerList: [],
+            player: {},
+            selectedPlayers:[]
         }
         this.selectMatch = this.selectMatch.bind(this);
         this.selectTeam = this.selectTeam.bind(this);
+        this.selectPlayer = this.selectPlayer.bind(this);
+    }
+
+    selectPlayer (e) {
+        const playerId = parseInt(e.target.selectedOptions[0].value);
+        const url = CONFIG.getPlayers+"?id="+playerId
+        axios.get(url)
+        .then((response)=> {
+            this.setState({player :response.data})
+            this.setState({selectedPlayers:response.data});
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+        //sp = Object.assign([...state.player])
     }
 
     selectTeam (e) {
@@ -24,6 +42,7 @@ class WagonWheelComponent extends Component {
         axios.get(playerUrl)
         .then((response)=> {
             this.setState({playerList :response.data})
+            this.setState({selectedPlayers:response.data});
         })
         .catch(function (error) {
             console.log(error);
@@ -62,7 +81,7 @@ class WagonWheelComponent extends Component {
                         </select>
                     </div>
                     <div className="select-wrap">
-                        <select className="select player-list" disabled={this.state.disabled}>
+                        <select className="select player-list" disabled={this.state.disabled} onChange={this.selectPlayer}>
                             <option selected="selected" >Select a player </option>  
                             {this.state.playerList.map(function(obj,index){ return(<option key={obj.id} value={obj.id}>{obj.player_name}</option>) })}
                         </select>
@@ -72,7 +91,7 @@ class WagonWheelComponent extends Component {
                 <div className="wagon-header-wrapper">NO DATA </div>
                 }
                 
-                <ChartPane />
+                <ChartPane selectedPlayers={this.state.selectedPlayers} />
             </div>
         )
     }

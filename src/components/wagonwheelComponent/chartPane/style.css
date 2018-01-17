@@ -1,0 +1,8 @@
+.canvas {
+    background: #c1c1c1;
+    border-radius: 15px;
+    border: 6px solid #4c1717;
+    margin-top: 40px; 
+    cursor: pointer;
+    margin-bottom: 50px;
+}
