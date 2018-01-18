@@ -21,16 +21,16 @@ class chartPane extends Component {
         this.initializeCanvas = this.initializeCanvas.bind(this)
     }
     componentWillReceiveProps (nextProps) {
-        const playersArray = nextProps.selectedPlayers;
+        let playersArray = nextProps.selectedPlayers;
         if(playersArray.length) {
             this.clearWagonLines()
             playersArray.map((currentPlayer)=>{
                 if(currentPlayer) {
-                    const sixes = currentPlayer.six;
-                    const fours = currentPlayer.four;
+                    let sixes = currentPlayer.six;
+                    let fours = currentPlayer.four;
                     // const dots = currentPlayer.dot;
-                    const ones = currentPlayer.one;
-                    const threes = currentPlayer.three;
+                    let ones = currentPlayer.one;
+                    let threes = currentPlayer.three;
                     if(sixes) {
                         sixes.map((obj,index) => {
                             this.drawCoordinates (obj.x, obj.y,"red") 
@@ -84,16 +84,16 @@ class chartPane extends Component {
     initializeCanvas () {
         const canvas = this.refs.canvas
         const ctx = canvas.getContext("2d")
-        const img = this.refs.image
-        img.onload = () => {
-            ctx.drawImage(img, 0, 0,ctx.canvas.width,ctx.canvas.height);
+        const groundLayoutImg = this.refs.image
+        groundLayoutImg.onload = () => {
+            ctx.drawImage(groundLayoutImg, 0, 0,ctx.canvas.width,ctx.canvas.height);
         }
     }
 
     drawDots(x,y) {
         const canvas = this.refs.canvas
-        let ctx = canvas.getContext("2d");
-        let pointSize = 2
+        const ctx = canvas.getContext("2d");
+        const pointSize = 2
         ctx.fillStyle = "#6b6b6b"; // Red color
         ctx.beginPath(); //Start path
         ctx.arc(x, y, pointSize, 0, Math.PI * 2, true); // Draw a point using the arc function of the canvas with a point structure.
@@ -102,7 +102,7 @@ class chartPane extends Component {
 
     drawCoordinates (x,y,color) {
         const canvas = this.refs.canvas
-        let ctx = canvas.getContext("2d");
+        const ctx = canvas.getContext("2d");
         ctx.beginPath();
         ctx.lineWidth=2
         ctx.strokeStyle= color;
@@ -113,10 +113,10 @@ class chartPane extends Component {
 
     clearWagonLines() {
         const canvas = this.refs.canvas
-        let ctx = canvas.getContext("2d");
-        const img = this.refs.image
+        const ctx = canvas.getContext("2d");
+        const canvasImage = this.refs.image
         ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height)
-        ctx.drawImage(img, 0, 0,ctx.canvas.width,ctx.canvas.height);
+        ctx.drawImage(canvasImage, 0, 0,ctx.canvas.width,ctx.canvas.height);
     }
     
 

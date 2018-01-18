@@ -18,7 +18,6 @@ class WagonContainer extends Component {
         const url = CONFIG.getAllDetails;
         axios.get(url)
         .then((response)=> {
-            console.log(response.data);
             this.setState({data:response.data})
         })
         .catch(function (error) {
@@ -27,7 +26,7 @@ class WagonContainer extends Component {
     }
 
     // this will update the common header data. OPTIONAL
-    onUpdateHeaderData=(data)=>{
+    updateHeaderData=(data)=>{
         this.setState({
             headerData:data
         })
@@ -40,7 +39,7 @@ class WagonContainer extends Component {
                     (this.state.data && this.state.data.length)?
                     <div>
                     <Template headerData={this.state.headerData}>  
-                    <WagonWheelComponent onUpdateHeaderData={this.onUpdateHeaderData} data={this.state.data} />
+                    <WagonWheelComponent updateHeaderData={this.updateHeaderData} data={this.state.data} />
                     </Template>  </div>
                     :
                     <div>Loading</div>

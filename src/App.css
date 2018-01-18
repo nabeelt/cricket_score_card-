@@ -1,36 +1,36 @@
-.App {
+.app {
   text-align: center;
 }
 
-.App-logo {
+.app-logo {
   animation: none;
   height: 60px;
 }
 
-.App-header {
+.app-header {
   background-color: #222;
   padding: 20px;
   color: white;
 }
 
-.App-title {
+.app-title {
   font-size: 1.5em;
   color: #91dc5a;
   font-family: "atomic";
   padding-bottom: 20px;
 }
 
-.match-details .App-title {
+.match-details .app-title {
   color: #fff;
   font-size: 16px;
   font-family: 'mukta-regular';
   padding-bottom: 0;
 }
-.App-intro {
+.app-intro {
   font-size: large;
 }
 
-.App-footer {
+.app-footer {
   /* position: absolute; */
   bottom: 0;
   width: 100%;
@@ -119,7 +119,7 @@
   right: 0;
 }
 
-@keyframes App-logo-spin {
+@keyframes app-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }

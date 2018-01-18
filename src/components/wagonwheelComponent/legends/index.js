@@ -9,7 +9,7 @@ class legends extends Component {
     render (){
         return (
             <div>
-                <ul className="legendWrapper">
+                <ul className="legend-wrapper">
                     <li className="each-legend six">
                         <span>Six</span>
                     </li>

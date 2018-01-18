@@ -18,12 +18,12 @@ class WagonWheelComponent extends Component {
         this.state = {
             matchData : [],
             disabled: true,
-            match_id: null,
+            matchId: null,
             teamList: [],
             playerList: [],
             player: {},
             selectedPlayers:[],
-            team_name: ''
+            teamName: ''
         }
         this.selectMatch = this.selectMatch.bind(this);
         this.selectTeam = this.selectTeam.bind(this);
@@ -46,10 +46,10 @@ class WagonWheelComponent extends Component {
     }
 
     selectTeam (e) {
-        const team_id =  parseInt(e.target.selectedOptions[0].value);
-        const playerUrl = CONFIG.getPlayers+"?team_id="+team_id+"&match_id="+this.state.match_id;
+        const teamId =  parseInt(e.target.selectedOptions[0].value);
+        const playerUrl = CONFIG.getPlayers+"?team_id="+teamId+"&match_id="+this.state.matchId;
         const teamName = e.target.selectedOptions[0].text;
-        this.setState({team_name: teamName});
+        this.setState({teamName: teamName});
         axios.get(playerUrl)
         .then((response)=> {
             this.setState({playerList :response.data})
@@ -61,13 +61,13 @@ class WagonWheelComponent extends Component {
     }
 
     selectMatch (e){
-        const match_id = parseInt(e.target.selectedOptions[0].value);
-        const teamUrl = CONFIG.getTeams+"?match_id="+match_id;
-        const matchUrl = CONFIG.getAllDetails+"?id="+match_id;
+        const matchId = parseInt(e.target.selectedOptions[0].value);
+        const teamUrl = CONFIG.getTeams+"?match_id="+matchId;
+        const matchUrl = CONFIG.getAllDetails+"?id="+matchId;
         axios.get(teamUrl)
         .then((response)=> {
             this.setState({teamList :response.data})
-            this.setState({match_id : match_id});
+            this.setState({matchId : matchId});
         })
         .catch(function (error) {
             console.log(error);
