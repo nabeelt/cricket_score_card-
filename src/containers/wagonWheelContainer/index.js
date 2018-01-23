@@ -7,15 +7,15 @@ import './style.css'
 
 
 class WagonContainer extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             data: { },
             headerData:{}
         }
     }
     componentWillMount () {
-        const url = CONFIG.getAllDetails;
+        const url = CONFIG.matchUrl;
         axios.get(url)
         .then((response)=> {
             this.setState({data:response.data})
@@ -38,8 +38,8 @@ class WagonContainer extends Component {
                 {
                     (this.state.data && this.state.data.length)?
                     <div>
-                    <Template headerData={this.state.headerData}>  
-                    <WagonWheelComponent updateHeaderData={this.updateHeaderData} data={this.state.data} />
+                    <Template showBtn={true} headerData={this.state.headerData}>  
+                        <WagonWheelComponent updateHeaderData={this.updateHeaderData} data={this.state.data} />
                     </Template>  </div>
                     :
                     <div>Loading</div>

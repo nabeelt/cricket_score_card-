@@ -1,17 +1,25 @@
 import React, { Component } from 'react'; 
 import './style.css'
 import layout from '../../../images/cricket_field.svg'
+import CONFIG from '../../../config/config'
+import axios from 'axios'
 
 const displayNone = {
     display: 'none'
 }
-let a = []
+
+let cordinates = []
 
 class chartPane extends Component {
     constructor(props){
         super(props);
         this.state = {
-            selectedPlayers : []
+            selectedPlayers : [],
+            currentCordinates: [],
+            playerId : '',
+            runType: this.props.runsType,
+            tempData : {},
+            coordinates: {}
         };
 
         this.drawCoordinates = this.drawCoordinates.bind(this);
@@ -19,10 +27,14 @@ class chartPane extends Component {
         this.getPosition = this.getPosition.bind(this);
         this.clearWagonLines = this.clearWagonLines.bind(this);
         this.initializeCanvas = this.initializeCanvas.bind(this)
+        this.replaceCoordinatesDB = this.replaceCoordinatesDB.bind(this)
+        this.getPlayerDetails = this.getPlayerDetails.bind(this)
+        this.updatePlayerDetails = this.updatePlayerDetails.bind(this)
     }
     componentWillReceiveProps (nextProps) {
+        console.log(nextProps,"next")
         let playersArray = nextProps.selectedPlayers;
-        if(playersArray.length) {
+        if(playersArray) {
             this.clearWagonLines()
             playersArray.map((currentPlayer)=>{
                 if(currentPlayer) {
@@ -51,29 +63,21 @@ class chartPane extends Component {
                             this.drawCoordinates (obj.x, obj.y,"white") 
                         })
                     }
-                    // if(dots) {
-                    //     dots.map((obj,index) => {
-                    //         this.drawDots (obj.x, obj.y) 
-                    //     })
-                    // }
                     
                 }
         
             })
-        }
-      
-        // this.parseData(nextProps);
-       
+        }       
     }
     getPosition (e) {
         const canvas = this.refs.canvas
         var rect = canvas.getBoundingClientRect();
         var x = e.clientX - rect.left; // x == the location of the click in the document - the location (relative to the left) of the canvas in the document
         var y = e.clientY - rect.top;
-        console.log(x,y);
         let obj = {"x":x,"y":y}
-        a.push(obj);
-
+        cordinates.push(obj);
+        this.setState({currentCordinates: cordinates})
+        this.drawCoordinates(x,y,this.props.color)
     }
 
 
@@ -109,6 +113,52 @@ class chartPane extends Component {
         ctx.moveTo(400.5,393);
         ctx.lineTo(x,y);
         ctx.stroke();
+        this.replaceCoordinatesDB(x,y);
+    }
+
+    replaceCoordinatesDB (x,y) {
+        let runType = this.props.runsType;
+        let playerId = this.props.playerId;
+        let url  = CONFIG.playersUrl+"/"+playerId
+
+        this.getPlayerDetails(url)
+        .then(response=>{
+            console.log(response,"response")
+            let data = response.data
+            let tempData = {"x":x,"y":y}
+            data[runType].push(tempData);
+            this.updatePlayerDetails(url,data)
+            .then(response=>{
+                console.log(response);
+            })
+            .catch((error)=> {
+                console.log(error);
+            });
+
+            
+            // if(data[runType]) {
+            //     temp[runType] = [... data[runType],{"x":x,"y":y}];
+        
+            // }
+            // else {
+            //     temp[runType] = [{"x":x,"y":y}];
+            // }
+            // let nwObj = {...data,...temp}
+
+
+        })
+        .catch((error)=> {
+            console.log(error);
+          });
+    }
+
+
+    getPlayerDetails=(url)=>{
+        return axios.get(url)
+        
+    }
+    updatePlayerDetails= (url,data)=>{
+        return axios.put(url,data)
     }
 
     clearWagonLines() {
@@ -123,7 +173,7 @@ class chartPane extends Component {
     render() {
         return (
             <div className="canvas-wrapper">
-                <canvas ref="canvas" className="canvas" width={800} height={900} onClick={this.getPosition}/>    
+                <canvas ref="canvas" className="canvas" width={800} height={900} onClick={this.getPosition} style={this.props.disabled}/>    
                 <img ref="image" src={layout} style={displayNone}/>
                 <draw />
             </div>

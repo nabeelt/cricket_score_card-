@@ -10,7 +10,12 @@ import axios from 'axios'
 const mainWrapper = {
     position: 'relative'
 }
-
+const disabled = {
+    pointerEvents:"none"
+}
+const paddingLeft0 = {
+    paddingLeft: 0
+}
 
 class WagonWheelComponent extends Component {
     constructor (props){
@@ -32,7 +37,7 @@ class WagonWheelComponent extends Component {
 
     selectPlayer (e) {
         const playerId = parseInt(e.target.selectedOptions[0].value);
-        const url = CONFIG.getPlayers+"?id="+playerId
+        const url = CONFIG.playersUrl+"?id="+playerId
         axios.get(url)
         .then((response)=> {
             this.setState({player :response.data})
@@ -47,7 +52,7 @@ class WagonWheelComponent extends Component {
 
     selectTeam (e) {
         const teamId =  parseInt(e.target.selectedOptions[0].value);
-        const playerUrl = CONFIG.getPlayers+"?team_id="+teamId+"&match_id="+this.state.matchId;
+        const playerUrl = CONFIG.playersUrl+"?team_id="+teamId+"&match_id="+this.state.matchId;
         const teamName = e.target.selectedOptions[0].text;
         this.setState({teamName: teamName});
         axios.get(playerUrl)
@@ -62,8 +67,8 @@ class WagonWheelComponent extends Component {
 
     selectMatch (e){
         const matchId = parseInt(e.target.selectedOptions[0].value);
-        const teamUrl = CONFIG.getTeams+"?match_id="+matchId;
-        const matchUrl = CONFIG.getAllDetails+"?id="+matchId;
+        const teamUrl = CONFIG.teamsUrl+"?match_id="+matchId;
+        const matchUrl = CONFIG.matchUrl+"?id="+matchId;
         axios.get(teamUrl)
         .then((response)=> {
             this.setState({teamList :response.data})
@@ -77,10 +82,10 @@ class WagonWheelComponent extends Component {
 
         axios.get(matchUrl)
         .then((response)=> {
-            if(this.props.onUpdateHeaderData)
+            if(this.props.updateHeaderData)
             {   
                 let data =  response.data[0];
-                this.props.onUpdateHeaderData({
+                this.props.updateHeaderData({
                     title: data.match_name,
                     date: data.date,
                     stadium: data.stadium
@@ -97,7 +102,7 @@ class WagonWheelComponent extends Component {
             <div style={mainWrapper}>
                 {
                 (this.props.data && this.props.data)?
-                <div className="wagon-header-wrapper">
+                <div className="wagon-header-wrapper" style={paddingLeft0}>
                     <div className="select-wrap">
                         <select className="select match-name" onChange={this.selectMatch}>
                             <option selected="selected" >Select a match </option>
@@ -121,7 +126,7 @@ class WagonWheelComponent extends Component {
                 <div className="wagon-header-wrapper">NO DATA </div>
                 }
                 <ScoreCard teamName={this.state.team_name} scoreCardData = {this.state.selectedPlayers}/>
-                <ChartPane selectedPlayers={this.state.selectedPlayers} />
+                <ChartPane disabled={disabled} selectedPlayers={this.state.selectedPlayers} />
 
                 <Legends />
             </div>

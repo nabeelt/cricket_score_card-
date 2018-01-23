@@ -1,0 +1,18 @@
+.add-score-wrapper {
+    margin-top: 100px;
+    width:100%;
+    float: left
+}
+.add-score-wrapper .each {
+    border: 2px solid #a6a6a6;
+    padding: 15px;
+    color: #0ba70e;
+    cursor: pointer;
+    margin-bottom: 15px;
+    background: #fff
+}
+.add-score-wrapper .each:hover,
+.add-score-wrapper .each:focus {
+    background: #a6a6a6;
+    transition: all 0.5s ease;
+}
