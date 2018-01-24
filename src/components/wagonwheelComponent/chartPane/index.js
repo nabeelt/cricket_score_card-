@@ -34,8 +34,8 @@ class chartPane extends Component {
     componentWillReceiveProps (nextProps) {
         console.log(nextProps,"next")
         let playersArray = nextProps.selectedPlayers;
-        if(playersArray) {
-            this.clearWagonLines()
+        this.clearWagonLines()
+        if(playersArray && playersArray.length) {
             playersArray.map((currentPlayer)=>{
                 if(currentPlayer) {
                     let sixes = currentPlayer.six;

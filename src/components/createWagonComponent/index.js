@@ -52,7 +52,7 @@ class CreateWagonComponent extends Component {
 
     selectPlayer=(e)=> {
         this.setState({current_playerId: e.target.value})
-        let playerUrl = CONFIG.playersUrl+"/"+this.state.current_playerId
+        let playerUrl = CONFIG.playersUrl+"/"+ e.target.value
         this.setState({disableAddScore:{}})
         axios.get(playerUrl)
         .then(response=>{

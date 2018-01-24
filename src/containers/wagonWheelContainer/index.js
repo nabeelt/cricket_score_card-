@@ -1,4 +1,5 @@
 import React, { Component } from 'react'; 
+import { withRouter } from 'react-router'; 
 import Template from '../../Template';
 import WagonWheelComponent from '../../components/wagonwheelComponent'
 import CONFIG from '../../config/config'
@@ -19,10 +20,15 @@ class WagonContainer extends Component {
         axios.get(url)
         .then((response)=> {
             this.setState({data:response.data})
+            if(this.state.data && this.state.data.length) {}
+            else {
+                this.props.history.push("/creatematch/");
+            }
         })
         .catch(function (error) {
-            console.log(error);
+            // console.log(error);
         });
+        
     }
 
     // this will update the common header data. OPTIONAL
@@ -51,4 +57,4 @@ class WagonContainer extends Component {
     }
 }
 
-export default WagonContainer;
+export default withRouter(WagonContainer);

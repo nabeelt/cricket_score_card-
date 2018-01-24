@@ -8,6 +8,7 @@ let matchUrl = CONFIG.matchUrl
 let teamUrl = CONFIG.teamsUrl
 let playerUrl = CONFIG.playersUrl
 let temp = []
+let count = 0;
 
 class creatematchComponent extends Component {
    
@@ -95,14 +96,14 @@ class creatematchComponent extends Component {
    }
 
    postPlayersDetails = (teamData,url,index) =>{
-       let teamId = teamData.id
-       let matchId = teamData.match_id
+        let teamId = teamData.id
+        let matchId = teamData.match_id
         let data = []
         let temp = []
         if (index == 1) {
             data = [{
                 player_name: this.state.player4,
-                id: this.getTimeStamp()+1,
+                id: this.getTimeStamp()+100,
                 team_id: teamId,
                 match_id: matchId,
                 six : [],
@@ -112,7 +113,7 @@ class creatematchComponent extends Component {
             },
             {
                 player_name: this.state.player5,
-                id: this.getTimeStamp()+2,
+                id: this.getTimeStamp()+200,
                 match_id: matchId,
                 team_id: teamId,
                 six : [],
@@ -122,7 +123,7 @@ class creatematchComponent extends Component {
             },
             {
                 player_name: this.state.player6,
-                id: this.getTimeStamp()+3,
+                id: this.getTimeStamp()+300,
                 match_id: matchId,
                 team_id: teamId,
                 six : [],
@@ -133,7 +134,7 @@ class creatematchComponent extends Component {
         } else {
             data = [{
                 player_name: this.state.player1,
-                id: this.getTimeStamp()+1,
+                id: this.getTimeStamp()+400,
                 team_id: teamId,
                 match_id: matchId,
                 six : [],
@@ -143,7 +144,7 @@ class creatematchComponent extends Component {
             },
             {
                 player_name: this.state.player2,
-                id: this.getTimeStamp()+2,
+                id: this.getTimeStamp()+500,
                 match_id: matchId,
                 team_id: teamId,
                 six : [],
@@ -153,7 +154,7 @@ class creatematchComponent extends Component {
             },
             {
                 player_name: this.state.player3,
-                id: this.getTimeStamp()+3,
+                id: this.getTimeStamp()+600,
                 match_id: matchId,
                 team_id: teamId,
                 six : [],
@@ -162,13 +163,17 @@ class creatematchComponent extends Component {
                 one :[]
             }]
         }
+        
         data.map((obj)=>{
+            
             this.postData(url,obj)
             .then((response)=>{
-                this.setState({status: response.status});
-               
-                    this.props.history.push("/createwagon/"+this.state.matchId);
-                    
+                count = count+1
+                console.log(response.data.id)
+                this.setState({status: response.status})
+                console.log(count,"count")
+                if(count == 5)
+                    this.props.history.push("/createwagon/"+this.state.matchId);     
             })
             .catch(function(error){
                 console.log(error);

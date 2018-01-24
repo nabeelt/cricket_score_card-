@@ -22,9 +22,6 @@ class legends extends Component {
                     <li className="each-legend one">
                         <span>One</span>
                     </li>
-                    <li className="each-legend dots">
-                        <span>Dots</span>
-                    </li>
                 </ul>
             </div>
         )
