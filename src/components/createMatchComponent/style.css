@@ -1,0 +1,40 @@
+
+.match-details {
+	padding-bottom: 40px;
+}
+.match-details .input-box,
+.team-wrap .team-list-entry .list-item .input-box {
+	
+}
+.match-details .list-item {
+	margin-bottom: 15px;
+}
+.team-wrap {
+	
+}
+.team-wrap .each-division {
+	display: inline-block;
+	width: 50%;
+	margin-top: 20px;
+}
+.team-wrap .left-section {
+	padding-right: 30px;
+}
+.team-wrap .right-section {
+	padding-left: 30px;
+}
+.team-wrap .team-list-entry {
+
+}
+.team-wrap .team-list-entry .list-item {
+	margin-bottom: 15px;
+}
+.heading3 {
+    font-size: 22px;
+    color: #bb980c;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+.team-name {
+	margin-bottom: 30px;
+}

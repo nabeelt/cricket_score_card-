@@ -1,5 +1,23 @@
-body {
+@font-face {
+  font-family: 'atomic';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./styles/fonts/atomic-age/atomicage-regular.ttf');
+}
+@font-face {
+  font-family: 'mukta-regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./styles/fonts/mukta/Mukta-Regular.ttf');
+}
+
+
+* {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+}
+body,html,#root,main {
+  font-family: 'mukta-regular';
+  height: 100%;
+  width: 100%;
 }

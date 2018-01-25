@@ -1,0 +1,7 @@
+.scorecard-wrap .each{
+    text-align: center;
+}
+
+.scorecard-wrap .each label{
+    padding-right: 10px;
+}
