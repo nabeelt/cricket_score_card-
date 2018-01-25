@@ -48,8 +48,6 @@ class WagonWheelComponent extends Component {
         .catch(function (error) {
             console.log(error);
         });
-
-        //sp = Object.assign([...state.player])
     }
 
     selectTeam (e) {
