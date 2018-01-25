@@ -23,7 +23,6 @@ class chartPane extends Component {
         };
 
         this.drawCoordinates = this.drawCoordinates.bind(this);
-        this.drawDots = this.drawDots.bind(this);
         this.getPosition = this.getPosition.bind(this);
         this.clearWagonLines = this.clearWagonLines.bind(this);
         this.initializeCanvas = this.initializeCanvas.bind(this)
@@ -34,8 +33,10 @@ class chartPane extends Component {
     componentWillReceiveProps (nextProps) {
         console.log(nextProps,"next")
         let playersArray = nextProps.selectedPlayers;
-        this.clearWagonLines()
-        if(playersArray && playersArray.length) {
+        if(this.props.changePlayer) {
+            this.clearWagonLines()
+        }
+        if(playersArray && playersArray.length) {   
             playersArray.map((currentPlayer)=>{
                 if(currentPlayer) {
                     let sixes = currentPlayer.six;
@@ -45,22 +46,22 @@ class chartPane extends Component {
                     let threes = currentPlayer.three;
                     if(sixes) {
                         sixes.map((obj,index) => {
-                            this.drawCoordinates (obj.x, obj.y,"red") 
+                            this.drawCoordinates (obj.x, obj.y,'red') 
                         })
                     }
                     if(fours) {
                         fours.map((obj,index) => {
-                            this.drawCoordinates (obj.x, obj.y,"blue") 
+                            this.drawCoordinates (obj.x, obj.y,'blue') 
                         })
                     }
                     if(threes) {
                         threes.map((obj,index) => {
-                            this.drawCoordinates (obj.x, obj.y,"yellow") 
+                            this.drawCoordinates (obj.x, obj.y,'yellow') 
                         })
                     }
                     if(ones) {
                         ones.map((obj,index) => {
-                            this.drawCoordinates (obj.x, obj.y,"white") 
+                            this.drawCoordinates (obj.x, obj.y,'white') 
                         })
                     }
                     
@@ -77,7 +78,7 @@ class chartPane extends Component {
         let obj = {"x":x,"y":y}
         cordinates.push(obj);
         this.setState({currentCordinates: cordinates})
-        this.drawCoordinates(x,y,this.props.color)
+        this.drawCoordinates(x,y,this.props.lineColor)
     }
 
 
@@ -94,16 +95,6 @@ class chartPane extends Component {
         }
     }
 
-    drawDots(x,y) {
-        const canvas = this.refs.canvas
-        const ctx = canvas.getContext("2d");
-        const pointSize = 2
-        ctx.fillStyle = "#6b6b6b"; // Red color
-        ctx.beginPath(); //Start path
-        ctx.arc(x, y, pointSize, 0, Math.PI * 2, true); // Draw a point using the arc function of the canvas with a point structure.
-        ctx.fill(); // Close the
-    }
-
     drawCoordinates (x,y,color) {
         const canvas = this.refs.canvas
         const ctx = canvas.getContext("2d");
@@ -114,6 +105,7 @@ class chartPane extends Component {
         ctx.lineTo(x,y);
         ctx.stroke();
         this.replaceCoordinatesDB(x,y);
+        console.log(color,"color")
     }
 
     replaceCoordinatesDB (x,y) {
@@ -134,18 +126,6 @@ class chartPane extends Component {
             .catch((error)=> {
                 console.log(error);
             });
-
-            
-            // if(data[runType]) {
-            //     temp[runType] = [... data[runType],{"x":x,"y":y}];
-        
-            // }
-            // else {
-            //     temp[runType] = [{"x":x,"y":y}];
-            // }
-            // let nwObj = {...data,...temp}
-
-
         })
         .catch((error)=> {
             console.log(error);
@@ -161,7 +141,7 @@ class chartPane extends Component {
         return axios.put(url,data)
     }
 
-    clearWagonLines() {
+    clearWagonLines= () => {
         const canvas = this.refs.canvas
         const ctx = canvas.getContext("2d");
         const canvasImage = this.refs.image

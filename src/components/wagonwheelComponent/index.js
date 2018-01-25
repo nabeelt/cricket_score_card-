@@ -28,7 +28,8 @@ class WagonWheelComponent extends Component {
             playerList: [],
             player: {},
             selectedPlayers:[],
-            teamName: ''
+            teamName: '',
+            isPlayerChange:false
         }
         this.selectMatch = this.selectMatch.bind(this);
         this.selectTeam = this.selectTeam.bind(this);
@@ -38,6 +39,7 @@ class WagonWheelComponent extends Component {
     selectPlayer (e) {
         const playerId = parseInt(e.target.selectedOptions[0].value);
         const url = CONFIG.playersUrl+"?id="+playerId
+        this.setState({isPlayerChange:true})
         axios.get(url)
         .then((response)=> {
             this.setState({player :response.data})
@@ -55,6 +57,7 @@ class WagonWheelComponent extends Component {
         const playerUrl = CONFIG.playersUrl+"?team_id="+teamId+"&match_id="+this.state.matchId;
         const teamName = e.target.selectedOptions[0].text;
         this.setState({teamName: teamName});
+        this.setState({isPlayerChange:true})
         axios.get(playerUrl)
         .then((response)=> {
             this.setState({playerList :response.data})
@@ -125,8 +128,8 @@ class WagonWheelComponent extends Component {
                     :
                 <div className="wagon-header-wrapper">NO DATA </div>
                 }
-                <ScoreCard teamName={this.state.team_name} scoreCardData = {this.state.selectedPlayers}/>
-                <ChartPane disabled={disabled} selectedPlayers={this.state.selectedPlayers} />
+                <ScoreCard teamName={this.state.teamName} scoreCardData = {this.state.selectedPlayers}/>
+                <ChartPane changePlayer={this.state.isPlayerChange} disabled={disabled} selectedPlayers={this.state.selectedPlayers} />
 
                 <Legends />
             </div>

@@ -27,7 +27,8 @@ class CreateWagonComponent extends Component {
             runsType:null,
             disableAddScore: disabledClass,
             color : '',
-            selectedPlayers:[]
+            selectedPlayers:[],
+            isChangePlayer: false
         }
         this.selectTeam = this.selectTeam.bind(this)
         this.selectPlayer = this.selectPlayer.bind(this)
@@ -54,6 +55,7 @@ class CreateWagonComponent extends Component {
         this.setState({current_playerId: e.target.value})
         let playerUrl = CONFIG.playersUrl+"/"+ e.target.value
         this.setState({disableAddScore:{}})
+        this.setState({isChangePlayer:true})
         axios.get(playerUrl)
         .then(response=>{
             this.setState({selectedPlayers: response.data})
@@ -71,8 +73,6 @@ class CreateWagonComponent extends Component {
     }
 
     render(){
-        console.log(this.state.playerList)
-        console.log(this.state.selectedPlayers,"sele")
         return(
             <div>
                 <div className="wagon-header-wrapper">
@@ -92,7 +92,7 @@ class CreateWagonComponent extends Component {
 
                 {/* <ScoreCard /> */}
                 {(this.state.playerList&&this.state.playerList.length)?<AddScore disabled={this.state.disableAddScore} onRunsTypeChange={this.onRunsTypeChange}  />:null}
-                <ChartPane  selectedPlayers = {this.state.selectedPlayers}  playerId={this.state.current_playerId} lineColor={this.state.color} runsType={this.state.runsType} />
+                <ChartPane changePlayer={this.state.isChangePlayer} onRef={ref => (this.child = ref)}  selectedPlayers = {this.state.selectedPlayers}  playerId={this.state.current_playerId} lineColor={this.state.color} runsType={this.state.runsType} />
                 <Legends />
             </div>
         )
